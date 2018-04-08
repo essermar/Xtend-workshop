@@ -7,11 +7,7 @@
  *******************************************************************************/
 package _01_helloworld
 
-/* Implicit imports from lib. In this case: InputOutput#println(String).
- *    See generated code.
- */
 class HelloWorld {
-	def static void main(String[] args) {
-		println('Hello, world!')
+	def static void main(String[] args) { 
 	}
 }
