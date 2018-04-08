@@ -4,8 +4,15 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
-/* TODO: Implement the required classes! Use inheritance or an interface. 
- * Hint: Xtend allows defining multiple types per file.
+/* Xtend knows the same type definitions as Java;e.g.: class, interface, enum
+ * and uses the same keywords.
+ * Xtend uses single inheritance. Types from Java can be used seamlessly.
+ * Packages and imports work as they do in Java.
+ * Xtend allows multiple top-level type definitions per file!
+ * Xtend types may have methods (default: public) and fields (default: private)
+ */
+/* TODO: Make the necessary modifications in file AdvancedHelloWorld to
+ * make the tests pass.
  * */
 class AdvancedHelloWorldTest {
 	
@@ -16,15 +23,15 @@ class AdvancedHelloWorldTest {
 	}
 
 	@Test
-	def testGreetXtend() {
-		/*  Immutable, use var for mutable version */
+	def void testGreetXtend() {
+		/*  Immutable, use var for mutable version. */
 		val Greeter greeter = new AdvancedHelloWorld("Xtend")
 		assertEquals("Hello, Xtend!", greeter.sayHello())
 	}
 	
 	@Test
-	def testGreetMrX() {
-		/* What is the inferred type here? */
+	def void testGreetMrX() {
+		/* Variable type can be inferred. What is the type here? */
 		val greeter = new AdvancedHelloWorld
 		
 		// Property-like use of setter (assignment instead of setter call)
