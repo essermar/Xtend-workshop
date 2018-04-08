@@ -1,0 +1,9 @@
+bin/
+temp/
+target/
+
+generated/
+src-gen/
+xtend-gen/
+
+*.xml_gen
