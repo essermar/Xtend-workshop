@@ -7,7 +7,9 @@ import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
 
-/* TODO: Print "Hello, world!" to the console. */
+/* TODO: Print "Hello, world!" to the console so that the test passes.
+ * Hint: Use function:  org.eclipse.xtext.xbase.lib.InputOutput#println()
+ */
 class HelloWorldTest {
 
 	PrintStream printStream
