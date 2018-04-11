@@ -7,3 +7,5 @@ src-gen/
 xtend-gen/
 
 *.xml_gen
+
+!.gitkeep
