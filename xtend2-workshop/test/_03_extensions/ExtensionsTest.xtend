@@ -6,12 +6,20 @@ import static extension _03_extensions.StaticExtensionProvider.isTheEmptyString
 import static org.junit.Assert.*
 
 /*
- * Extension methods allow adding new methods to existing types without modifying them.
- * May increase readability. Useful for integrating static utility functions.
+ * Extension methods are a syntactic trick.
+ * With this trick it is possible to "add" new methods to existing types without modifying them.
+ * Example:
+ * 	def foo (A a){...}	// no method foo defined in type A!
+ *  ...
+ *  A a = new A
+ *  foo(a) // normal method call
+ *  a.foo() // equivalent extension method call
+ * 
  * Extension mechanism is based on a very simple syntactic trick:
  * Remove the first argument of an extension method invocation from the argument list and use it 
  * as the receiver of the method call instead.
  * Thus it appears as if the method was one of the argument type's member functions.
+ * Why? Increases readability (if used wisely). Useful for integrating static utility functions.
  */
 class ExtensionsTest extends LocalExtension {
 
