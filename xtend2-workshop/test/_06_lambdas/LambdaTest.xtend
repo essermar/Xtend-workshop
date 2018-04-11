@@ -28,15 +28,13 @@ class LambdaTest {
 		val i = 99
 		val stringClosure = [String str, String str2|str + str2 + i]
 
-
 		assertEquals("Hello, world!", stringLambda.apply("Hello, ", "world!"))
 		assertEquals("Hello, world!", stringLambdaWithShorthandSyntax.apply("Hello, ", "world!"))
 		assertEquals("Hello, world!99", stringClosure.apply("Hello, ", "world!"))
 		assertEquals("Hello, world!", [String str, String str2|str + str2].apply("Hello, ", "world!"))
 
 		// TODO: Fix the failing assertion by implementing the appropriate lambda. 
-		//	var BiFunction<String, String, String> stringLambdaJdk8 = null
-		val BiFunction<String, String, String> stringLambdaJdk8 = [String str, String str2|(str + str2).toUpperCase()]
+		var BiFunction<String, String, String> stringLambdaJdk8 = null
 		assertEquals("HELLO, WORLD!", stringLambdaJdk8.apply("Hello, ", "world!"))
 	}
 
@@ -105,8 +103,7 @@ class LambdaTest {
 	// TODO: Guess what is going on here. Then run the test to find out.
 	@Test
 	def void testDemoLambdaShorthandNotationWithNoReadabilityAtAll() {
-		// assertEquals("result?", "x".doSpecialApply("y")[a, b|a + b + a + b])
-		assertEquals("xyxy", "x".doSpecialApply("y")[a, b|a + b + a + b])
+		assertEquals("result?", "x".doSpecialApply("y")[a, b|a + b + a + b])
 	}
 
 	/* 
@@ -118,8 +115,8 @@ class LambdaTest {
 		function1.apply(s1, s2)
 	}
 
-
 	// Procedure used as a lambda may be quite complex  ...
+	// TODO: Guess the outcome :-)
 	@Test
 	def void testLambdaWithComplexBody() {
 		val exampleObjects = newArrayList("4", 3, true, "9")
@@ -138,15 +135,13 @@ class LambdaTest {
 	// TODO: Test fails. Try to predict the actual result.
 	@Test
 	def void testMapFunction() {
-		// assertArrayEquals(#[/*result?*/] as int[], (1 .. 3).map[it * 3 + 2])
-		assertArrayEquals(#[5, 8, 11], (1 .. 3).map[it * 3 + 2])
+		assertArrayEquals(#[ /*result?*/ ] as int[], (1 .. 3).map[it * 3 + 2])
 	}
 
 	// TODO: Test fails. Try to predict the actual result.
 	@Test
 	def void testTypeFilterFunction() {
-		// assertEquals(/*result?*/ -1, #["4", 3, true, "9"].filter(Number).get(0))
-		assertEquals(3, #["4", 3, true, "9"].filter(Number).get(0))
+		assertEquals( /*result?*/ -1, #["4", 3, true, "9"].filter(Number).get(0))
 	}
 
 	// TODO: Will the test past?
@@ -164,22 +159,19 @@ class LambdaTest {
 	// TODO: Test fails. Try to predict the actual result.
 	@Test
 	def void testFindFirstFunction() {
-//		assertEquals( /*result?*/ -1, (1 .. 10).findFirst[it > 5].intValue)
-		assertEquals(6, (1 .. 10).findFirst[it > 5].intValue)
+		assertEquals( /*result?*/ -1, (1 .. 10).findFirst[it > 5].intValue)
 	}
 
 	// TODO: Test fails. Try to predict the actual result.
 	@Test
 	def void testFindLastFunction() {
-		//assertEquals( /*result?*/ -1, (1 .. 10).findLast[it < 5].intValue)
-		assertEquals(4, (1 .. 10).findLast[it < 5].intValue)
+		assertEquals( /*result?*/ -1, (1 .. 10).findLast[it < 5].intValue)
 	}
 
 	// TODO: Test fails. Try to predict the actual result.
 	@Test
 	def void testReduceFunction() {
-		// assertEquals(/*result?*/-1, (1 .. 10).filter[it % 2 == 0].reduce[i1, i2|i1 + i2].intValue)
-		assertEquals(30, (1 .. 10).filter[it % 2 == 0].reduce[i1, i2|i1 + i2].intValue)
+		assertEquals(/*result?*/-1, (1 .. 10).filter[it % 2 == 0].reduce[i1, i2|i1 + i2].intValue)
 	}
 
 	/* Just for the sake of completeness (no lambdas here) */
@@ -201,15 +193,13 @@ class LambdaTest {
 	// TODO: Test fails. Try to predict the actual result.
 	@Test
 	def void testTakeFunction() {
-		// assertEquals("result?", (1 .. 10).take(5).join(', '))
-		assertEquals("1, 2, 3, 4, 5", (1 .. 10).take(5).join(', '))
+		assertEquals("result?", (1 .. 10).take(5).join(', '))
 	}
 
 	// TODO: Test fails. Try to predict the actual result.
 	@Test
 	def void testDropFunction() {
-		// assertEquals("result?", (1 .. 10).drop(5).join(', '))
-		assertEquals("6, 7, 8, 9, 10", (1 .. 10).drop(5).join(', '))
+		assertEquals("result?", (1 .. 10).drop(5).join(', '))
 	}
 
 	/* Some advice: Do not chain too many collection processing calls! Makes your code unreadable!
@@ -217,13 +207,7 @@ class LambdaTest {
 	// TODO: Rewrite call chain using properly named intermediate results
 	@Test
 	def void testInappropriatelyLongAndComplicatedlambdaChain() {
-
-//		val result = (10 .. 1).map[toString].sortBy[it].fold(0)[i1, String s2|i1 + println(s2).parseInt]
-//		assertEquals(55, result)
-
-		val integerStrings = (10..1).map[toString]
-		val integerStringsInAscendingOrder = integerStrings.sortBy[it]
-		val sum = integerStringsInAscendingOrder.fold(0)[int aggregator, String str | println(str); aggregator + str.parseInt()]
-		assertEquals(55, sum)
+		val result = (10 .. 1).map[toString].sortBy[it].fold(0)[i1, String s2|i1 + println(s2).parseInt]
+		assertEquals(55, result)
 	}
 }
