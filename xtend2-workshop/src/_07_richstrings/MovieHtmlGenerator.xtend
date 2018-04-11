@@ -6,7 +6,7 @@ import java.util.Set
 import java.io.FileReader
 import org.eclipse.xtend.lib.annotations.Data
 import static extension com.google.common.io.CharStreams.*
-  
+
 /** Based on class {@code Movies} from Xtend's movies example */
 class MovieHtmlGenerator {
 
@@ -14,7 +14,7 @@ class MovieHtmlGenerator {
 
 	def readMovies() {
 		val url = MovieHtmlGenerator.getResource('data.csv')
-		return new FileReader(url.file).readLines.map[ line |
+		return new FileReader(url.file).readLines.map [ line |
 			val segments = line.split('  ').iterator
 			return new Movie(
 				segments.next,
@@ -28,8 +28,8 @@ class MovieHtmlGenerator {
 
 	// TODO: Print a list of all the movies with a rating higher than 8!
 	def String printMovies() {
-//		println("Not implemented, yet.")
 		val movies = readMovies()
+		// println("Not implemented, yet.")
 
 		val html = '''
 			<!DOCTYPE html>
@@ -49,7 +49,6 @@ class MovieHtmlGenerator {
 		'''
 		println(html)
 	}
-
 }
 
 @Data class Movie {
