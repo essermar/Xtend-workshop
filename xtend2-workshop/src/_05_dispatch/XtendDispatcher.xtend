@@ -29,6 +29,7 @@ class XtendDispatcher {
 	def dispatch doSomething(Number o, Object b) { "b" }
 	def dispatch doSomething(Integer o, Number b) { "c" }
 
+
 	/** Demo generator */
 	def dispatch generate(Void nullArg) {
 		"null"

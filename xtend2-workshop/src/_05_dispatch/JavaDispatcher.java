@@ -40,6 +40,7 @@ public class JavaDispatcher {
 			return "null";
 		}
 	}
+
 	private String doGenerate (Object obj) {
 		return "This is some object!";
 	}

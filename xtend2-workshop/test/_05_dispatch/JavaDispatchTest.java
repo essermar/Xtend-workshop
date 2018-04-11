@@ -57,8 +57,17 @@ public class JavaDispatchTest {
 	// in class 'JavaDispatcher'
 	@Test
 	public void testCommonWorkaroundForStaticDispatchInCodeGenerators() {
-		Object i = 4;
-		assertEquals("This is an integer!", javaDispatcher.generate(i));
+		Object obj = 4;
+		assertEquals("This is an integer!", javaDispatcher.generate(obj));
+		obj = 3.3f;
+		assertEquals("This is a number!", javaDispatcher.generate(obj));
+		obj = "";
+		assertEquals("This is a string!", javaDispatcher.generate(obj));
+		obj = new Object();
+		assertEquals("This is some object!", javaDispatcher.generate(obj));
+		obj = null;
+		assertEquals("null", javaDispatcher.generate(obj));
+		
 	}
 
 	/**
@@ -66,6 +75,8 @@ public class JavaDispatchTest {
 	 * cannot decide which method is the most specific. Because for one method to be
 	 * more specific than another, all its parameter types have to be more specific
 	 * than the other's.
+	 * Makes life really hard if your main generator method has to deal with
+	 * multiple parameters.
 	 * Xtend has a built-in solution for this: dispatch methods!
 	 */
 	// TODO: Fix the test. Hint: Use type-casts.
