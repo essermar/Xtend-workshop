@@ -12,10 +12,12 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
+/* Almost everything is an expression in Xtend; i.e: returns a value of a certain type.
+ * Simplest kind of expression: literals.
+ */
 class BasicExpressionsTest {
 
-	/* TODO: Run the test and familiarize yourselves with the various types of literals
-	 * There is a little error you will need to fix to make it pass. */
+	/* TODO: Run the test and familiarize yourselves with the various types of literals */
 	@Test
 	def void testLiterals() {
 		// String literals work with single or double quotes
@@ -24,22 +26,22 @@ class BasicExpressionsTest {
 
 		// Number literals (big decimals (bd), float (f) and double (d) in this case)
 		assertEquals(42, 20 + 20 + 1 * 2)
-		assertEquals(42.00bd, 0.00bd + 42bd) // TODO: Fix. Hint literals missing
+		assertEquals(42.00bd, 0.00bd + 42bd)
 		assertEquals(42.0f, 42.0d + 0, 0)
 
 		// Boolean literals
 		assertEquals(true, !false)
 
 		// Class literals (in Java: BasicExpressions.class)
-		assertEquals(this.getClass(), BasicExpressionsTest)
+		assertEquals(BasicExpressionsTest, this.getClass())
 
 		// Alternatively use 'typeof' (mandatory for array types!) 
-		assertEquals(this.getClass(), typeof(BasicExpressionsTest))
+		assertEquals(typeof(BasicExpressionsTest), this.getClass())
 	}
 
 	/*  There are literals for lists, sets and maps
 	 *  and numerous extension methods which make working with them
-	 *  convenient (shown in later examples)
+	 *  convenient (shown in later examples).
 	 *  Collection literals produce immutable collections!
 	 *  For creating mutable collections, there are a number of factory methods available 
 	 *  (see class org.eclipse.xtext.xbase.lib.CollectionLiterals)
@@ -76,8 +78,8 @@ class BasicExpressionsTest {
 	}
 
 	/* Control statements similar to Java (if-else, switch, try-catch, ...)
-	 * But: (Almost) everything in Xtend is an expression and returns a value.
-	 * Loops, for example, are an exception.
+	 * But: (Almost) everything in Xtend is an expression and returns a value of a certain type.
+	 * Except those expressions that are of type 'void';e.g.: loops.
 	 */
 	// TODO: Fix the test. Hint: Take a close look at the operators used.
 	@Test
@@ -97,18 +99,16 @@ class BasicExpressionsTest {
 	// TODO: Fix the test! Keep modifications to a minimum! 
 	@Test
 	def void testSimpleSwitchExpression() {
-		/* In a switch, the first match wins.
+		/* In a switch, the first case test that evaluates to true wins.
 		 * The argument that goes into the switch can be computed and bound to a variable.
 		 */
 		assertEquals('switched successfully', switch (String t : 'text') {
-			// uses a predicate  // [TODO: Remove]
+			// uses an explicit predicate
 			case t.length > 8:
 				t.toUpperCase // implicit break!
-				// [TODO: Remove] uses equals
+			// uses implicit comparison via equals()
 			case 'text':
-				// t
-				'switched successfully'
-			// break!
+				'switched successfully' // implicit break!
 			default:
 				'Never happens!'
 		})
@@ -133,17 +133,53 @@ class BasicExpressionsTest {
 	 * If argument is of the given type, type-cast is performed and
 	 * the test predicate is evaluated.
 	 */
-	 // TODO: Fix the test. Hint: Take a look at the type guards!
+	// TODO: Fix the test. Hint: Take a look at the type guards!
 	@Test
 	def void testSwitchExpressionWithTypeGuards() {
 		val Object someValue = 'A string?'
 		assertEquals('A string? Yes, it is!', switch someValue {
 			Number case 4: 'number'
-//			Number: someValue + (' Yes, it is!')
+//			Integer: someValue + (' Yes, it is!')
 			String: someValue + (' Yes, it is!')
 		})
 
 	}
 
+	/* Nothing really surprising here.
+	 * Remember: All loops have type void. That means you cannot assign them to anything.
+	 */
+	@Test
+	def void testLoops() {
 
+		// for-each loop (with range)
+		var counter = 1
+		for (i : 1 .. 10) {
+			assertEquals(counter, i)
+			counter = counter + 1
+		}
+
+		// traditional for loop
+		for (var i = 11; i > 0; i--) {
+			assertEquals(counter, i)
+			counter -= 1 // compound assignment
+		}
+		assertEquals(0, counter)
+
+		// while loop
+		val iterator = #[1, 2, 3, 4, 5].iterator
+		counter = 1
+		while (iterator.hasNext) {
+			val i = iterator.next
+			assertEquals(counter, i)
+			counter = counter + 1
+		}
+
+		// do-while loop
+		counter = 1
+		do {
+			counter++
+		} while (counter < 4)
+		assertEquals(4, counter)
+
+	}
 }
