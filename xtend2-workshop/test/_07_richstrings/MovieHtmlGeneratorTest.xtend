@@ -13,6 +13,7 @@ class MovieHtmlGeneratorTest {
 		this.generator = new MovieHtmlGenerator
 	}
 
+	// TODO Implement method printMovies() in class MovieHtmlGenerator and make the test pass.
 	@Test
 	def void testHtml() {
 		assertEquals('''

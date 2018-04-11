@@ -4,11 +4,12 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.DayOfWeek
 
-/* 
- * Template expressions for printing large amounts of structured text.
- * Great for M2T or simply as a replacement for 'String.format(...)' in Java.
+/* Xtend has great support for generating large amounts of structured text:
+ * => RichStrings a.k.a. template expressions
+ * Can be used to achieve roughly the same thing as String.format(...) in Java.
+ * But in a much more flexible and convenient fashion.
  * 
- * RichString: Multiline text (including grey space) + template expressions «» (with white space).
+ * RichString: Multiline text (including grey space) + embedded expressions «» (with white space).
  * Allows separating template code formatting from printout formatting. 
  * All grey sections get printed exactly as they appear in the code starting
  * from the target documents left border.
