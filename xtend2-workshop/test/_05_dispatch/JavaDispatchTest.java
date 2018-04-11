@@ -34,14 +34,10 @@ public class JavaDispatchTest {
 	//
 	@Test
 	public void testJavaDispatchOneParameter() {
-//		 assertEquals("<result>", javaDispatcher.doSomething("str"));
-		assertEquals("o", javaDispatcher.doSomething("str"));
-//		 assertEquals("<result>", javaDispatcher.doSomething(3));
-		assertEquals("n", javaDispatcher.doSomething(3));
-//		 assertEquals("<result>", javaDispatcher.doSomething(BigInteger.valueOf(3)));
-		assertEquals("bi", javaDispatcher.doSomething(BigInteger.valueOf(3)));
-//		 assertEquals("<result>", javaDispatcher.doSomething((Object) BigInteger.valueOf(3)));
-		assertEquals("o", javaDispatcher.doSomething((Object) BigInteger.valueOf(3)));
+		 assertEquals("<result>", javaDispatcher.doSomething("str"));
+		 assertEquals("<result>", javaDispatcher.doSomething(3));
+		 assertEquals("<result>", javaDispatcher.doSomething(BigInteger.valueOf(3)));
+		 assertEquals("<result>", javaDispatcher.doSomething((Object) BigInteger.valueOf(3)));
 	}
 
 	/**
@@ -57,8 +53,17 @@ public class JavaDispatchTest {
 	// in class 'JavaDispatcher'
 	@Test
 	public void testCommonWorkaroundForStaticDispatchInCodeGenerators() {
-		Object i = 4;
-		assertEquals("This is an integer!", javaDispatcher.generate(i));
+		Object obj = 4;
+		assertEquals("This is an integer!", javaDispatcher.generate(obj));
+		obj = 3.3f;
+		assertEquals("This is a number!", javaDispatcher.generate(obj));
+		obj = "";
+		assertEquals("This is a string!", javaDispatcher.generate(obj));
+		obj = new Object();
+		assertEquals("This is some object!", javaDispatcher.generate(obj));
+		obj = null;
+		assertEquals("null", javaDispatcher.generate(obj));
+		
 	}
 
 	/**
@@ -66,6 +71,8 @@ public class JavaDispatchTest {
 	 * cannot decide which method is the most specific. Because for one method to be
 	 * more specific than another, all its parameter types have to be more specific
 	 * than the other's.
+	 * Makes life really hard if your main generator method has to deal with
+	 * multiple parameters.
 	 * Xtend has a built-in solution for this: dispatch methods!
 	 */
 	// TODO: Fix the test. Hint: Use type-casts.
@@ -73,9 +80,8 @@ public class JavaDispatchTest {
 	public void testJavaDispatchTwoParameters() {
 		assertEquals("a", javaDispatcher.doSomething("x", 3));
 
-//		assertEquals("b", javaDispatcher.doSomething(BigInteger.valueOf(3), 3));
-		assertEquals("b", javaDispatcher.doSomething(BigInteger.valueOf(3), (Object) 3));
-//		assertEquals("c", javaDispatcher.doSomething(3, 3));
-		assertEquals("c", javaDispatcher.doSomething((Integer) 3, (Number) 3));
+		// TODO: Uncomment and fix
+		//assertEquals("b", javaDispatcher.doSomething(BigInteger.valueOf(3), 3));
+		//assertEquals("c", javaDispatcher.doSomething(3, 3));
 	}
 }

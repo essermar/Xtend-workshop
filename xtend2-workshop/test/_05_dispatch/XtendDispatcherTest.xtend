@@ -21,18 +21,17 @@ class XtendDispatcherTest {
 		assertEquals("o", dispatcher.doSomething("str"))
 		assertEquals("n", dispatcher.doSomething(3))
 		assertEquals("bi", dispatcher.doSomething(3bi))
-		// assertEquals("<result>", dispatcher.doSomething(3bi as Object))
-		assertEquals("bi", dispatcher.doSomething(3bi as Object))
+		assertEquals("<result>", dispatcher.doSomething(3bi as Object))
 	}
 
 	@Test
 	def void testDynamicDispatchInGeneratorWithXtend() {
 		// Not possible in Java. Very useful in generator code!
 		val Object i = 1
-		assertEquals("This is an integer!", i.generate)
-		assertEquals("null", null.generate)
+		assertEquals("This is an integer!", i.generate())
+		assertEquals("null", null.generate())
 
-		// Especially when iterating over a ist
+		// Especially when iterating over a list
 		val input = #[3, null, "Hello, World!"]	
 		var output = ""
 		for (o : input) {

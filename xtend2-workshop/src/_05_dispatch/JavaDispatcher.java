@@ -27,19 +27,9 @@ public class JavaDispatcher {
 
 	/** Demo generator */
 	public String generate(Object obj) {
-//		throw new RuntimeException("Not yet implemented!");
-		if (obj instanceof Integer) {
-			return doGenerate((Integer) obj);
-		} else if (obj instanceof Number) {
-			return doGenerate((Number) obj);
-		} else if (obj instanceof String) {
-			return doGenerate((String) obj);
-		} else if (obj instanceof Object) {
-			return doGenerate(obj);
-		} else {
-			return "null";
-		}
+		throw new RuntimeException("Not yet implemented!");
 	}
+
 	private String doGenerate (Object obj) {
 		return "This is some object!";
 	}
