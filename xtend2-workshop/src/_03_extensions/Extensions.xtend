@@ -3,7 +3,6 @@ package _03_extensions
 import java.math.BigDecimal
 
 class LocalExtension {
-	// TODO: Participants have to come up with this method
 	def addOne(BigDecimal bigD) {
 		// bigD.add(1bd)
 		bigD + 1bd

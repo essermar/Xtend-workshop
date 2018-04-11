@@ -6,12 +6,20 @@ import static extension _03_extensions.StaticExtensionProvider.isTheEmptyString
 import static org.junit.Assert.*
 
 /*
- * Extension methods allow adding new methods to existing types without modifying them.
- * May increase readability. Useful for integrating static utility functions.
+ * Extension methods are a syntactic trick.
+ * With this trick it is possible to "add" new methods to existing types without modifying them.
+ * Example:
+ * 	def foo (A a){...}	// no method foo defined in type A!
+ *  ...
+ *  A a = new A
+ *  foo(a) // normal method call
+ *  a.foo() // equivalent extension method call
+ * 
  * Extension mechanism is based on a very simple syntactic trick:
  * Remove the first argument of an extension method invocation from the argument list and use it 
  * as the receiver of the method call instead.
  * Thus it appears as if the method was one of the argument type's member functions.
+ * Why? Increases readability (if used wisely). Useful for integrating static utility functions.
  */
 class ExtensionsTest extends LocalExtension {
 
@@ -20,7 +28,6 @@ class ExtensionsTest extends LocalExtension {
 	 * Methods owned by the current class or a superclass are automatically available as
 	 * extension methods. That includes static methods. Must be visible, of course.
 	 */
-	 // TODO: Add the required method 'addOne' to the 'Extensions' class
 	@Test
 	def void testLocalExtension() {
 		/* Standard method call
@@ -52,15 +59,13 @@ class ExtensionsTest extends LocalExtension {
 	 * Use 'import static extension' to make static methods of an imported class locally available
 	 * as extension methods.
 	 */
-	 // TODO: Add the required import statement to the import section in this file. Hint: The methods you
-	 // are looking for are defined in class 'ContainerWithStaticMethods' seen earlier.
 	@Test
-	def void testExtensionImport() {
+	def void testStaticExtensionImport() {
 		val String nullString = null;
 
 		// Extension method syntax
 		assertFalse(nullString.isTheEmptyString())
-		// Traditional call (static import!)
+		// Traditional call (regular static import would be sufficient!)
 		assertFalse(isTheEmptyString(nullString))
 
 		val theEmptyString = "";
@@ -72,7 +77,6 @@ class ExtensionsTest extends LocalExtension {
 	 * By adding the extension keyword to a field, a local variable or a parameter declaration, 
 	 * their instance methods are imported into the local scope and become available as extension methods.
 	 */
-	 // TODO: Make the tests compile by filling in the 'extension' keyword in the right place
 	@Test
 	def void testExtensionProvider() {
 		val extension encryptor = new Encryptor
