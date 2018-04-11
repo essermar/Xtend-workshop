@@ -28,7 +28,6 @@ class LambdaTest {
 		val i = 99
 		val stringClosure = [String str, String str2|str + str2 + i]
 
-
 		assertEquals("Hello, world!", stringLambda.apply("Hello, ", "world!"))
 		assertEquals("Hello, world!", stringLambdaWithShorthandSyntax.apply("Hello, ", "world!"))
 		assertEquals("Hello, world!99", stringClosure.apply("Hello, ", "world!"))
@@ -120,6 +119,7 @@ class LambdaTest {
 
 
 	// Procedure used as a lambda may be quite complex  ...
+	// TODO: Guess the outcome :-) It should be "4 3 true true true 9"
 	@Test
 	def void testLambdaWithComplexBody() {
 		val exampleObjects = newArrayList("4", 3, true, "9")
