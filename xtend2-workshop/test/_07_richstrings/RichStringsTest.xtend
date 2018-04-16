@@ -15,7 +15,14 @@ class RichStringsTest {
 
 	@Test
 	def void testBasicRichString() {
-		assertEquals("/*\tHelloWorld.c\t*/\n#include <stdio.h>\nmain() {\n\tprintf(\"Hellö, world!\");\n}\n",
+		// Java-version of expectation: "/*\tHelloWorld.c\t*/\n#include <stdio.h>\nmain() {\n\tprintf(\"Hellö, world!\");\n}\n"
+		assertEquals('''
+			/*	HelloWorld.c	*/
+			#include <stdio.h>
+			main() {
+				printf("Hellö, world!");
+			}
+		'''.toString(),
 			richStrings.printRichStringWithBasicFormatting.toString())
 	}
 

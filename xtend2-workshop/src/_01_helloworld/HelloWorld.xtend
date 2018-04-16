@@ -12,6 +12,6 @@ package _01_helloworld
  */
 class HelloWorld {
 	def static void main(String[] args) {
-		println('Hello, world!')
+		print('Hello, world!\n')
 	}
 }
