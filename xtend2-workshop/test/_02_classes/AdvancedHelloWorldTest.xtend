@@ -3,8 +3,8 @@ package _02_classes
 import org.junit.Test
 
 import static org.junit.Assert.*
-
-/* Xtend knows the same type definitions as Java;e.g.: class, interface, enum
+/* This example showcases type definitions, member variables and (accessor) methods in Xtend.
+ * Xtend knows the same type definitions as Java;e.g.: class, interface, enum
  * and uses the same keywords.
  * Xtend uses single inheritance. Types from Java can be used seamlessly.
  * Packages and imports work as they do in Java.

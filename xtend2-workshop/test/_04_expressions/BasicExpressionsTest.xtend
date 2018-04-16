@@ -141,6 +141,7 @@ class BasicExpressionsTest {
 			Number case 4: 'number'
 //			Integer: someValue + (' Yes, it is!')
 			String: someValue + (' Yes, it is!')
+			default: 'default'
 		})
 
 	}
