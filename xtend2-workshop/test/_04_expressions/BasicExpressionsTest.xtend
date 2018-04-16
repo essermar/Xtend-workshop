@@ -51,12 +51,15 @@ class BasicExpressionsTest {
 	def void testCollectionLiterals() {
 
 		var list = #['Hello', ',']
+		list.add('world!')
 		assertEquals('world!', list.get(2))
 
 		var set = #{1, 3, 5}
+		set.add(6)
 		assertEquals(4, set.size)
 
 		var map = #{'one' -> 1, 'two' -> 2, 'three' -> 3}
+		map.put('four', 4)
 		assertEquals(4, map.get('four'))
 
 		/* Note that the type argument produced by the factory method below
@@ -132,6 +135,7 @@ class BasicExpressionsTest {
 		assertEquals('A string? Yes, it is!', switch someValue {
 			Number case 4: 'number'
 			Integer: someValue + (' Yes, it is!')
+			default: 'default'
 		})
 
 	}

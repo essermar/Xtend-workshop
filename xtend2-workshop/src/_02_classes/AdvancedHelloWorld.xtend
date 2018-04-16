@@ -4,7 +4,7 @@ interface Greeter {
 
 	def String sayHelloWorld() {
 		/* Default methods are possible when transpiling to Java8.
-		 * See Xtend compiler preferences
+		 * See Xtend compiler preferences.
 		 */
 	}
 	def String sayHello() 
